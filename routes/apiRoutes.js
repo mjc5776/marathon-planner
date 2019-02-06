@@ -23,4 +23,19 @@ module.exports = function(app) {
       res.json(dbExample);
     });
   });
+
+  //Get current user
+
+  //Get user history
+
+  //Post new user
+
+  //Post user preferences
+
+  //Post new survey
+
+  //Get SurveyDetail
+
+  //
+
 };

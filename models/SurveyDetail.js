@@ -1,7 +1,8 @@
 module.exports = function(sequelize, DataTypes) {
   var SurveyDetail = sequelize.define("SurveyDetail", {
     SurveyId: DataTypes.INTEGER,
-    QuestionId: DataTypes.INTEGER //foriegn key from SurveyQuestion.js
+    QuestionId: DataTypes.INTEGER, //foriegn key from SurveyQuestion.js
+    Answer: DataTypes.STRING
   });
 
   //Pass UP id into Survey table
