@@ -3,7 +3,7 @@
     "username": "root",
     "password": "root",
     "port": 3306,
-    "database": "reelplaner_db",
+    "database": "reelplanner_db",
     "host": "localhost",
     "dialect": "mysql"
   },

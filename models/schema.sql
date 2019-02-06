@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS reelplaner_db;
-CREATE DATABASE reelplaner_db;
+DROP DATABASE IF EXISTS reelplanner_db;
+CREATE DATABASE reelplanner_db;

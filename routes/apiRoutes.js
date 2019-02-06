@@ -25,17 +25,22 @@ module.exports = function(app) {
   });
 
   //Get current user
-
-  //Get user history
-
-  //Post new user
+  app.get("/api/user/:id", function(req, res) {
+    db.User.findAll({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(user) {
+      console.log(user);
+      
+      res.json(user);
+    });
+  });
 
   //Post user preferences
 
-  //Post new survey
-
   //Get SurveyDetail
 
-  //
+  //http://www.omdbapi.com/?apikey=trilogy&t=Captain+Marvel&y=2019
 
 };
