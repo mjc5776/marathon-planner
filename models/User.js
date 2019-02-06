@@ -27,14 +27,14 @@ module.exports = function(sequelize, DataTypes) {
   //Pass DOWN id into UserHistory and UserPrecerence table
   User.associate = function(models) {
     User.hasOne(models.UserPreference, {
-      as: "userId",
-      foreignKey: "id",
+      // as: "userId",
+      // foreignKey: "id",
       onDelete: "cascade"
     });
 
     User.hasOne(models.UserHistory, {
-      as: "userId",
-      foreignKey: "id",
+      // as: "userId",
+      // foreignKey: "id",
       onDelete: "cascade"
     });
   };
