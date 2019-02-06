@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
         len: [1]
       }
     },
-    MovieType: {
+    MovieGenre: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
