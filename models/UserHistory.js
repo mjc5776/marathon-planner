@@ -23,8 +23,8 @@ module.exports = function(sequelize, DataTypes) {
   //Pass id DOWN as FK to many Survey entries
   UserHistory.associate = function(models) {
     UserHistory.hasMany(models.Survey, {
-      as: "histId",
-      foreignKey: "id",
+      // as: "histId",
+      // foreignKey: "id",
       onDelete: "cascade"
     });
   };
