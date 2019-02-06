@@ -26,13 +26,11 @@ module.exports = function(app) {
 
   //Get current user
   app.get("/api/user/:id", function(req, res) {
-    db.User.findAll({
+    db.User.findOne({
       where: {
         id: req.params.id
       }
     }).then(function(user) {
-      console.log(user);
-      
       res.json(user);
     });
   });
@@ -42,5 +40,4 @@ module.exports = function(app) {
   //Get SurveyDetail
 
   //http://www.omdbapi.com/?apikey=trilogy&t=Captain+Marvel&y=2019
-
 };
