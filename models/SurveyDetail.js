@@ -16,8 +16,8 @@ module.exports = function(sequelize, DataTypes) {
   //Pass id DOWN to many SurveyQuestion entries
   SurveyDetail.associate = function(models) {
     SurveyDetail.hasMany(models.SurveyQuestion, {
-      as: "svDetailId",
-      foreignKey: "id",
+      // as: "svDetailId",
+      // foreignKey: "id",
       onDelete: "cascade"
     });
   };
