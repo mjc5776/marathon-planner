@@ -17,8 +17,30 @@ module.exports = function(app) {
 
   // Delete an example by id
   app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
+    db.Example.destroy({ where: { id: req.params.id } }).then(function(
+      dbExample
+    ) {
       res.json(dbExample);
     });
   });
+
+  //Get current user
+  app.get("/api/user/:id", function(req, res) {
+    db.User.findAll({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(user) {
+      console.log(user);
+      
+      res.json(user);
+    });
+  });
+
+  //Post user preferences
+
+  //Get SurveyDetail
+
+  //http://www.omdbapi.com/?apikey=trilogy&t=Captain+Marvel&y=2019
+
 };
