@@ -1,29 +1,49 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
+  //------- User API's --------------
+  //Create new user
+  app.post("/api/newuser/", function(req, res) {
+    db.User.create({
+      FirstName: req.body.firstname,
+      LastName: req.body.lastname,
+      EmailAddress: req.body.email,
+      AuthId: req.body.authid //Need to grap this value from AuthO. Check with Mike S. on how AuthO works.
+    }).then(function(user) {
+      console.log(user);
+      res.json(user);
     });
   });
 
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
+  //Get current user
+  app.get("/api/user/:id", function(req, res) {
+    db.User.findAll({})
+    .then(function(user) {
+      console.log(user);
+      res.json(user);
     });
   });
 
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(
-      dbExample
-    ) {
-      res.json(dbExample);
+  //Get user history
+  app.get("/api/history/:id", function(req, res) {
+    db.UserHistory.findAll({
+      where: {
+        UserId: req.params.id
+      }
+    }).then(function(history) {
+      console.log(history);
+      res.json(history);
     });
   });
 
+  //----- Survey API's -----
+
+  //Get Survey Questions
+  app.get("/api/questions/", function(req, res) {
+    db.SurveyQuestion.findAll({})
+   .then(function(questions) {
+      console.log(questions);
+    res.json(questions);
   //Get current user
   app.get("/api/user/:id", function(req, res) {
     db.User.findOne({
