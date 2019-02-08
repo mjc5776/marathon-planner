@@ -12,12 +12,12 @@ module.exports = function(sequelize, DataTypes) {
 
   //Pass UP id into SurveyDetail table
   //SurveyQuestion.associate = function(models) {
-   // SurveyQuestion.belongsTo(models.SurveyDetail, {
-     // foreignKey: {
-     //   allowNull: false
-     // }
-    //});
- // };
+  // SurveyQuestion.belongsTo(models.SurveyDetail, {
+  // foreignKey: {
+  //   allowNull: false
+  // }
+  //});
+  // };
 
   return SurveyQuestion;
 };
