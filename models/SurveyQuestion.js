@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   var SurveyQuestion = sequelize.define("SurveyQuestion", {
-    QuestionId: DataTypes.INTEGER,
+    //QuestionId: DataTypes.INTEGER, ---We do not need this
     Question: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -11,13 +11,13 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   //Pass UP id into SurveyDetail table
-  SurveyQuestion.associate = function(models) {
-    SurveyQuestion.belongsTo(models.SurveyDetail, {
-      foreignKey: {
-        allowNull: false
-      }
-    });
-  };
+  //SurveyQuestion.associate = function(models) {
+   // SurveyQuestion.belongsTo(models.SurveyDetail, {
+     // foreignKey: {
+     //   allowNull: false
+     // }
+    //});
+ // };
 
   return SurveyQuestion;
 };
