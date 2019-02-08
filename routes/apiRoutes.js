@@ -17,8 +17,7 @@ module.exports = function(app) {
 
   //Get current user
   app.get("/api/user/:id", function(req, res) {
-    db.User.findAll({})
-    .then(function(user) {
+    db.User.findAll({}).then(function(user) {
       console.log(user);
       res.json(user);
     });
@@ -36,14 +35,6 @@ module.exports = function(app) {
     });
   });
 
-  //----- Survey API's -----
-
-  //Get Survey Questions
-  app.get("/api/questions/", function(req, res) {
-    db.SurveyQuestion.findAll({})
-   .then(function(questions) {
-      console.log(questions);
-    res.json(questions);
   //Get current user
   app.get("/api/user/:id", function(req, res) {
     db.User.findOne({
@@ -64,19 +55,4 @@ module.exports = function(app) {
       res.json(result);
     });
   });
-
-  //Get SurveyDetail
-  app.get("/api/sdetail/:surveyId/:questionId/:answer", function(req, res) {
-    db.SurveyDetail.findAll({
-      where: {
-        SurveyId: req.params.surveyId,
-        QuestionId: req.params.surveyId,
-        Answer: req.params.answer
-      }
-    }).then(function(result) {
-      res.json(result);
-    });
-  });
-
-  //http://www.omdbapi.com/?apikey=trilogy&t=Captain+Marvel&y=2019
 };
