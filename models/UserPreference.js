@@ -13,22 +13,5 @@ module.exports = function(sequelize, DataTypes) {
     });
   };
 
-  UserPreference.associate = function(models) {
-    UserPreference.belongsTo(models.Genres, {
-      foreignKey: {
-        allowNull: false
-      }
-    });
-  };
-
-  //Pass id DOWN as FK to many MoviePreference entries
-  //UserPreference.associate = function(models) {
-  //UserPreference.hasMany(models.MoviePreference, {
-  //// as: "prefId",
-  //// foreignKey: "id",
-  //onDelete: "cascade"
-  //});
-  //};
-
   return UserPreference;
 };
