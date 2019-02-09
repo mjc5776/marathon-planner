@@ -18,14 +18,14 @@ module.exports = app => {
     });
   });
 
-  // Load example page and pass in an example by id
-  app.get("/example/:id", (req, res) => {
-    db.Example.findOne({ where: { id: req.params.id } }).then(dbExample => {
-      res.render("example", {
-        example: dbExample
-      });
-    });
-  });
+  // // Load example page and pass in an example by id
+  // app.get("/example/:id", (req, res) => {
+  //   db.Example.findOne({ where: { id: req.params.id } }).then(dbExample => {
+  //     res.render("example", {
+  //       example: dbExample
+  //     });
+  //   });
+  // });
 
   // Render 404 page for any unmatched routes
   app.get("*", (req, res) => {
