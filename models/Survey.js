@@ -5,22 +5,22 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   //Pass UP id into UserHistory table
-  Survey.associate = function(models) {
-    Survey.belongsTo(models.UserHistory, {
-      foreignKey: {
-        allowNull: false
-      }
-    });
-  };
+  // Survey.associate = function(models) {
+  //   Survey.belongsTo(models.UserHistory, {
+  //     foreignKey: {
+  //       allowNull: false
+  //     }
+  //   });
+  // };
 
-  //Pass id DOWN to many SurveyDetail entries
-  Survey.associate = function(models) {
-    Survey.hasMany(models.SurveyDetail, {
-      // as: "surveyId",
-      // foreignKey: "id",
-      onDelete: "cascade"
-    });
-  };
+  // //Pass id DOWN to many SurveyDetail entries
+  // Survey.associate = function(models) {
+  //   Survey.hasMany(models.SurveyDetail, {
+  //     // as: "surveyId",
+  //     // foreignKey: "id",
+  //     onDelete: "cascade"
+  //   });
+  // };
 
   return Survey;
 };
