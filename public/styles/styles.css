@@ -1,5 +1,27 @@
-.list-group-item {
-  line-height: 2.5;
+
+body {
+  background: url(../images/felix-mooneeram-222805-unsplash.jpg);
+  background-size: cover;
+  background-position: center;
+  min-height: 1000px;
+  color: white;
+  
+}
+.input-field textarea:focus + label {
+  color: white !important;
+}
+
+.row .input-field textarea:focus {
+  border-bottom: 1px solid white !important;
+  box-shadow: 0 1px 0 0 white !important;
+}
+
+
+
+@media screen and (max-width: 670px){
+  header{
+    min-height: 500px;
+  }
 }
 #menu {
 text-align: center;
