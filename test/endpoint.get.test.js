@@ -17,9 +17,9 @@ describe("POST /api/newuser", function() {
     return db.sequelize.sync({ force: true });
   });
 
-  db.User.bulkCreate({
-      {First}
-  })
+//   db.User.bulkCreate({
+//       {First}
+//   })
 
   it("should save an example", function(done) {
     // Create an object to send to the endpoint
