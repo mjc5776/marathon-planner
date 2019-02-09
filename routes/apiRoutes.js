@@ -15,8 +15,8 @@ module.exports = function(app) {
     });
   });
 
-  //Get current user
-  app.get("/api/user/:id", function(req, res) {
+  //Get all users
+  app.get("/api/users", function(req, res) {
     db.User.findAll({}).then(function(user) {
       console.log(user);
       res.json(user);
