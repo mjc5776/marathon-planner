@@ -2,14 +2,14 @@
   "development": {
     "username": "root",
     "password": "root",
-    "port": 3306,
+    "port": 8889,
     "database": "reelplanner_db",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": null,
+    "password": "root",
     "database": "testdb",
     "host": "localhost",
     "dialect": "mysql",
