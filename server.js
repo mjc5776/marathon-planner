@@ -16,7 +16,7 @@ const passport = require("passport");
 const session = require("express-session");
 
 // Middleware
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
