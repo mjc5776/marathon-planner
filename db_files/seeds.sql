@@ -1,21 +1,21 @@
 USE reelplanner_db;
 
-INSERT INTO users (FirstName, LastName, EmailAddress, AuthId)
+INSERT INTO users (FirstName, LastName, email, password)
 VALUES ("Jarvis", "Vision", "email@address.com", "test");
 
-INSERT INTO users (FirstName, LastName, EmailAddress, AuthId)
+INSERT INTO users (FirstName, LastName, email, password)
 VALUES ("Bruce", "Banner", "email@address.com", "test");
 
-INSERT INTO users (FirstName, LastName, EmailAddress, AuthId)
+INSERT INTO users (FirstName, LastName, email, password)
 VALUES ("Natasha", "Romanoff", "email@address.com", "test");
 
-INSERT INTO users (FirstName, LastName, EmailAddress, AuthId)
+INSERT INTO users (FirstName, LastName, email, password)
 VALUES ("Tony", "Stark", "email@address.com", "test");
 
-INSERT INTO users (FirstName, LastName, EmailAddress, AuthId)
+INSERT INTO users (FirstName, LastName, email, password)
 VALUES ("Steve", "Rogers", "email@address.com", "test");
 
-INSERT INTO moviegenres(genre, genreId)
+INSERT INTO genres(genre, genreId)
 Values
 ('Crime', 80),
 ('Romance', 10749),

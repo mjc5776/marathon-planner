@@ -1,13 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
   var UserHistory = sequelize.define("UserHistory", {
     UserId: DataTypes.INTEGER,
-    omdbId: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
-    },
+    movieId: DataTypes.INTEGER,
     recommend: {
       type: DataTypes.BOOLEAN,
       allowNull: true
