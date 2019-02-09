@@ -1,4 +1,4 @@
-var db = require("../models");
+const db = require("../models");
 
 module.exports = function(app) {
   //------- User API's --------------
@@ -55,3 +55,20 @@ module.exports = function(app) {
       res.json(result);
     });
   });
+
+  //Get Movie Genres
+  app.get("/api/genres/", function(req, res) {
+    db.Genres.findAll({}).then(function(genre) {
+      console.log(genre);
+      res.json(genre);
+    });
+  });
+
+  //Get Movie Genres
+  app.get("/api/genres/", function(req, res) {
+    db.Genres.findAll({}).then(function(genre) {
+      console.log(genre);
+      res.json(genre);
+    });
+  });
+};
