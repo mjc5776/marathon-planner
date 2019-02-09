@@ -1,4 +1,6 @@
-
+.card {
+  width: 400px;
+}
 body {
   background: url(../images/felix-mooneeram-222805-unsplash.jpg);
   background-size: cover;
