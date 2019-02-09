@@ -14,3 +14,21 @@ VALUES ("Tony", "Stark", "email@address.com", "test");
 
 INSERT INTO users (FirstName, LastName, EmailAddress, AuthId)
 VALUES ("Steve", "Rogers", "email@address.com", "test");
+
+INSERT INTO moviegenres(Genre)
+Values('Musical'),
+('Crime'),
+('Romance'),
+('Drama'),
+('Action'),
+('Adventure'),
+('Sci-Fi'),
+('Documentary'),
+('Comedy'),
+('Horror'),
+('Thriller'),
+('Animation'),
+('Family'),
+('Fantasy'),
+('Western'),
+('War');
