@@ -35,6 +35,17 @@ module.exports = function(app) {
     });
   });
 
+  //Post user history
+  app.post("/api/history/:user/:movie/:recommend", function(req, res) {
+    db.UserHistory.create({
+      UserId: parseInt(req.params.user),
+      movieId: parseInt(req.params.movie),
+      recommend: parseInt(req.params.recommend)
+    }).then(function(result) {
+      res.json(result);
+    });
+  }); 
+
   //Get current user
   app.get("/api/user/:id", function(req, res) {
     db.User.findOne({
@@ -57,32 +68,10 @@ module.exports = function(app) {
   });
 
   //Get Movie Genres
-  app.get("/api/genres/", function(req, res) {
-    db.Genres.findAll({}).then(function(genre) {
+  app.get("/api/genres", function(req, res) {
+    db.Genre.findAll({}).then(function(genre) {
       console.log(genre);
       res.json(genre);
-    });
-  });
-
-  //Get Movie Genres
-  app.get("/api/genres/", function(req, res) {
-    db.Genres.findAll({}).then(function(genre) {
-      console.log(genre);
-      res.json(genre);
-    });
-  });
-
-  // Get all examples
-  app.get("/api/examples", (req, res) => {
-    db.Example.findAll({}).then(dbExamples => {
-      res.json(dbExamples);
-    });
-  });
-
-  // Create a new example
-  app.post("/api/examples", (req, res) => {
-    db.Example.create(req.body).then(dbExample => {
-      res.json(dbExample);
     });
   });
 
