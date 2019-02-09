@@ -7,6 +7,10 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         len: [1]
       }
+    },
+    recommend: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true
     }
   });
 
