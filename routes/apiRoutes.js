@@ -58,20 +58,22 @@ module.exports = function(app) {
   });
 
   //Post user preferences
-  app.post("/api/pref/:userId/:prefId", function(req, res) {
+  app.post("/api/pref/:userId/:genrefId", function(req, res) {
     db.UserPreference.create({
       UserId: req.params.userId,
-      MoviePrefId: req.params.prefId
+      GenreId: req.params.genreId
     }).then(function(result) {
       res.json(result);
     });
   });
 
   //Get Movie Genres
-  app.get("/api/genres", function(req, res) {
-    db.Genre.findAll({}).then(function(genre) {
-      console.log(genre);
-      res.json(genre);
+  app.get("/preference", function(req, res) {
+    db.Genre.findAll({}).then(function(data) {
+      var hbsObject = {
+        genres: data
+      };
+      res.render("preference", hbsObject) 
     });
   });
 
