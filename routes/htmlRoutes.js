@@ -18,6 +18,22 @@ module.exports = app => {
     });
   });
 
+  app.get("/preference", (req, res) =>  {
+    db.Example.findAll({}).then(dbExamples => {
+      // PASSPORT: checks to see if the user is logged in.  If so then render conditional handlebars via logout render true/false
+      let logout = false;
+      if (req.user) {
+        logout = true;
+      }
+      res.render("preference", {
+        
+        // PASSPORT: logout will be true or false if user is logged in
+        logout: logout,
+        examples: dbExamples
+      });
+    });
+  });
+
 
 
 
@@ -117,14 +133,3 @@ module.exports = app => {
 };
 
 
-
-//var movie = $("#movie-input").val();
-//var queryURL =
-//"https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy";
-
-//$.ajax({
-// url: queryURL,
-//method: "GET"
-//}).then(function(response) {
-// $("#movie-view").text(JSON.stringify(response));
-//});
