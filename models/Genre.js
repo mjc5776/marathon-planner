@@ -1,7 +1,8 @@
 module.exports = function(sequelize, DataTypes) {
   var Genre = sequelize.define("Genre", {
     genre: DataTypes.STRING,
-    genreId: DataTypes.INTEGER
+    genreId: DataTypes.INTEGER,
+    image: DataTypes.STRING
   });
 
   // //Pass genre id to User Preferences
