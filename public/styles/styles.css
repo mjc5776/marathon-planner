@@ -1,3 +1,79 @@
-.list-group-item {
-  line-height: 2.5;
+.card {
+  width: 400px;
+}
+body {
+  background: url(../images/felix-mooneeram-222805-unsplash.jpg);
+  background-size: cover;
+  background-position: center;
+  min-height: 1000px;
+  color: white;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  
+}
+.input-field textarea:focus + label {
+  color: white !important;
+}
+
+.row .input-field textarea:focus {
+  border-bottom: 1px solid white !important;
+  box-shadow: 0 1px 0 0 white !important;
+}
+
+
+main {
+  flex: 1 0 auto;
+}
+.activator {
+ 
+    width: 100px; /* you can use % */
+    height: auto;
+}
+.fa-github:before {
+  color: grey;
+  font-size: 45px;
+}
+ /* label focus color */
+ .input-field input[type=text]:focus + label {
+  color: grey !important;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid grey !important;
+  box-shadow: 0 1px 0 0 grey !important ;
+}
+
+ /* label focus color */
+ .input-field input[type=password]:focus + label {
+  color: grey !important;
+}
+/* label underline focus color */
+.input-field input[type=password]:focus {
+  border-bottom: 1px solid grey !important;
+  box-shadow: 0 1px 0 0 grey !important ;
+}
+.prefix.active {
+  color: grey !important;
+}
+ /* label focus color */
+ .input-field input[type=email]:focus + label {
+  color: grey !important;
+}
+/* label underline focus color */
+.input-field input[type=email]:focus {
+  border-bottom: 1px solid grey !important;
+  box-shadow: 0 1px 0 0 grey !important ;
+}
+
+
+
+@media screen and (max-width: 670px){
+  header{
+    min-height: 500px;
+  }
+}
+#menu {
+text-align: center;
+margin: 300px;
 }

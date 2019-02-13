@@ -3,13 +3,13 @@
     "username": "root",
     "password": "root",
     "port": 8889,
-    "database": "exampledb",
+    "database": "reelplanner_db",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": null,
+    "password": "root",
     "database": "testdb",
     "host": "localhost",
     "dialect": "mysql",
