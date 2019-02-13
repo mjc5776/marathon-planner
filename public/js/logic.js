@@ -132,6 +132,15 @@ var movieApi = {
   }
 };
 
+
+
+
+
+
+
+
+
+
 //API key: f2e5add79221379cbdfc8bd98daf758e
 //This finds a movie by title: https://api.themoviedb.org/3/search/movie?api_key=f2e5add79221379cbdfc8bd98daf758e&query=[title]
 //This finds similar movies based on a single film (selected by TMDB id): https://api.themoviedb.org/3/movie/[movie id]550/similar?api_key=f2e5add79221379cbdfc8bd98daf758e&language=en-US&page=1
