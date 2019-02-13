@@ -1,20 +1,16 @@
 <div class="container center">
-  <h4>Select your favorite movie genres.</h4>
+    <h4>Select your favorite movie genres.</h4>
 </div>
 
-<div class="container center">
-  <div class="row">
-  <div id="Movie Genres">
-<!-- Select all genres -->
-         {{#each genres}}
-          <form action="" method="">
-            <div class=""> 
-                  <button class="waves-effect waves-light btn-small blue" id={{id}} type="submit">{{genre}}</button>
-            </div>
-          </form>
-        {{/each}}
 
-       
-      </div>
-  </div>
+
+<!-- Select a genres -->
+<div class="row card transparent">
+    {{#each genres}} 
+    <div class="col s12 m6 l4">
+    <img src="{{image}}" class="materialbox responsive-img card genrebutton" id={{id}}>
+    </div>
+    {{/each}}
+
 </div>
+
