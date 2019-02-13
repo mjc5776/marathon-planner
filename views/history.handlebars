@@ -1,6 +1,6 @@
 <div class="row" id="histList">
 
-    <h4 class="header center">Movie History</h4>
+    <h4 class="header center">Movies History</h4>
 
     <div class="col s2 m4 l4">
 
@@ -10,7 +10,7 @@
                     alt="office">
             </div>
             <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">See Other Movies Like This <i class="mdi-navigation-more-vert right"></i></span>
+                <span class="card-title activator grey-text text-darken-4 suggest-movie" data-movieId="550">See Other Movies Like This <i class="mdi-navigation-more-vert right"></i></span>
                 <p><a href="#">This is a link</a>
                 </p>
             </div>
@@ -20,23 +20,15 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
 
- 
+<script type="text/javascript">
+    $("body").on("click", ".suggest-movie", function() {
+        var movieId = parseInt($(this).attr("data-movieID"));
+        $.ajax("/api/similar/"+movieId, {
+            type: "GET"
+        }).then(function(data) {
+            console.log(data);
+        });
+    });
+</script>

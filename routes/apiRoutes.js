@@ -55,29 +55,38 @@ module.exports = function(app) {
       }
     }).then(function(user) {
       res.json(user);
-    });
+    }); 
   });
 
   //Post user preferences
-  app.post("/api/pref/:userId/:genrefId", function(req, res) {
+  app.post("/api/addpref/:id", function(req, res) {
     db.UserPreference.create({
-      UserId: req.params.userId,
-      GenreId: req.params.genreId
+      //UserId: req.user.id,
+      GenreId: req.params.id
     }).then(function(result) {
-      res.json(result);
+      //res.json(result);
+      console.log("result");
+      
     });
   });
 
   //Get Movie Genres
   app.get("/preference", function(req, res) {
-    db.Genre.findAll({}).then(function(data) {
+    db.Genre.findAll({
+      include: [{
+        model: db.UserPreference,
+        //required: true //set required: true for a inner JOIN between Genre and UserPref
+      }] 
+    }).then(function(data) {
       var hbsObject = {
         genres: data
       };
+      //res.json(hbsObject);
       res.render("preference", hbsObject) 
     });
   });
 
+    
   // Delete an example by id
   app.delete("/api/examples/:id", function(req, res) {
     db.Example.destroy({ where: { id: req.params.id } }).then(dbExample => {
