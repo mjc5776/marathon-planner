@@ -68,7 +68,17 @@ $(document).on('click','.genrebutton', function() {
     url: '/api/addpref/' + id
   }).then(function(response) {
   })
-})
+});
+
+$('body').live('click', '.suggest-movie', function () {
+  var movieId = parseInt($(this).attr('data-movieID'));
+  $.ajax('/api/similar/' + movieId, {
+    type: 'GET'
+  }).then(function (data) {
+    console.log(data);
+  });
+});
+
 
 </script>
 </html>
