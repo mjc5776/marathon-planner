@@ -17,11 +17,11 @@ VALUES ("Steve", "Rogers", "email4@address.com", "test");
 
 INSERT INTO genres(genre, genreId)
 Values
-('Crime', 80),
-('Romance', 10749),
-('Drama', 18),
-('Action', 28),
-('Adventure', 12),
+('Crime', 80, 'images/Crime.jpg'),
+('Romance', 10749,'images/Romance.jpg' ),
+('Drama', 18, 'images/Drama.jpg'),
+('Action', 28, 'images/Action.jpg'),
+('Adventure', 12, 'images/Adventure.jpg'),
 ('Science Fiction', 878),
 ('Documentary', 99),
 ('Comedy', 35),
@@ -36,3 +36,4 @@ Values
 ('Music', 10402),
 ('Mystery', 9648),
 ('TV Movie', 10770);
+
