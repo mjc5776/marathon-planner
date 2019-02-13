@@ -23,7 +23,7 @@ module.exports = (app, passport) => {
   app.post(
     "/signin",
     passport.authenticate("local-signin", {
-      successRedirect: "/dashboard",
+      successRedirect: "/preference",
       failureRedirect: "/signin"
     })
   );
@@ -47,9 +47,9 @@ module.exports = (app, passport) => {
     });
   });
 
-  // Load dashboard page after authentication
-  app.get("/dashboard", isLoggedIn, (req, res) => {
-    res.render("dashboard");
+  // Load preference page after authentication
+  app.get("/preference", isLoggedIn, (req, res) => {
+    res.render("preference");
   });
 
   // Passport function that checks if the user is logged in or not.  If not then it redirects them to the signin page
