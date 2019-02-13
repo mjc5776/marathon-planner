@@ -58,4 +58,16 @@
     })
   </script>
 </body>
+<script>
+//Get the genre id of the button clicked.
+$(document).on('click','.genrebutton', function() {
+  var id = $(this).attr('id');
+  $.ajax({
+    type: 'POST',
+    url: '/api/addpref/' + id
+  }).then(function(response) {
+  })
+})
+
+</script>
 </html>
