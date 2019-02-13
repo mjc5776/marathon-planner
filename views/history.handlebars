@@ -1,67 +1,105 @@
-<div class="row">
+<div class="row" id="histList"
 
     <h4 class="header center">Movies History</h4>
-
-    <div class="col s2 m4 l4">
-
-        <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="https://cdn.cinematerial.com/p/297x/udapnxr3/the-dark-knight-movie-poster-md.jpg"
-                    alt="office">
-            </div>
-            <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">See Other Movies Like This <i class="mdi-navigation-more-vert right"></i></span>
-                <p><a href="#">This is a link</a>
-                </p>
-            </div>
-            <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Suggestions<i class="mdi-navigation-close right"></i></span>
-                <p>Here is some more information about movies that you might like.</p>
-            </div>
-        </div>
-    </div>
-
-
-
-
-    <div class="col s12 m4 l4">
-        <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="https://cdn.cinematerial.com/p/297x/udapnxr3/the-dark-knight-movie-poster-md.jpg"
-                    alt="office">
-            </div>
-            <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">Did you watch the movie <i class="mdi-navigation-more-vert right"></i></span>
-                <p><a href="#">This is a link</a>
-                </p>
-            </div>
-            <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Card Title <i class="mdi-navigation-close right"></i></span>
-                <p>Here is some more information about this product that is only revealed once clicked on.</p>
-            </div>
-        </div>
-    </div>
-
-
-
-    <div class="col s12 m4 l4">
-        <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="https://cdn.cinematerial.com/p/297x/udapnxr3/the-dark-knight-movie-poster-md.jpg"
-                    alt="office">
-            </div>
-            <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">Did you watch the movie <i class="mdi-navigation-more-vert right"></i></span>
-                <p><a href="#">This is a link</a>
-                </p>
-            </div>
-            <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Card Title <i class="mdi-navigation-close right"></i></span>
-                <p>Here is some more information about this product that is only revealed once clicked on.</p>
-            </div>
-        </div>
-    </div>
-
-
-
 </div>
+<script type="text/javascript">
+var movieApi = {
+  key: "f2e5add79221379cbdfc8bd98daf758e",
+  getMovie: function(title) {
+    var URL =
+      "https://api.themoviedb.org/3/search/movie?api_key=" +
+      this.key +
+      "&query=" +
+      title;
+    return $.ajax({
+      type: "GET",
+      url: URL
+    });
+  },
+  getSimilar: function(movieId) {
+    var URL =
+      "https://api.themoviedb.org/3/movie/" +
+      movieId +
+      "/similar?api_key=" +
+      this.key +
+      "&language=en-US&page=1";
+    return $.ajax({
+      type: "GET",
+      url: URL
+    });
+  },
+  getNowPlaying: function() {
+    var URL =
+      "https://api.themoviedb.org/3/movie/now_playing?api_key=" +
+      this.key +
+      "&language=en-US&page=1";
+    return $.ajax({
+      type: "GET",
+      url: URL
+    });
+  },
+  getByGenre: function(term) {
+    var genreId;
+    for (let i = 0; i < genres.length; i++) {
+      if (genres[i].name === term) {
+        genreId = genres[i].id;
+      }
+    }
+    var URL =
+      "https://api.themoviedb.org/3/discover/movie?api_key=" +
+      this.key +
+      "&language=en-US&sort_by=popularity.desc&include_video=false&page=1" +
+      "&with_genres=" +
+      genreId;
+    return $.ajax({
+      type: "GET",
+      url: URL
+    });
+  },
+  getById: function(id) {
+    var URL =
+      "https://api.themoviedb.org/3/movie/" +
+      id +
+      "?api_key=" +
+      this.key +
+      "&language=en-US";
+    return $.ajax({
+      type: "GET",
+      url: URL,
+      dataType: "json"
+    });
+  }
+};
+
+//API key: f2e5add79221379cbdfc8bd98daf758e
+//This finds a movie by title: https://api.themoviedb.org/3/search/movie?api_key=f2e5add79221379cbdfc8bd98daf758e&query=[title]
+//This finds similar movies based on a single film (selected by TMDB id): https://api.themoviedb.org/3/movie/[movie id]550/similar?api_key=f2e5add79221379cbdfc8bd98daf758e&language=en-US&page=1
+//Movie id path within movie json: results[i].id
+//Movie poster path: https://image.tmdb.org/t/p/w600_and_h900_bestv2/ + results[i].poster_path
+//this URL has many useful queries to incorporate: https://api.themoviedb.org/3/discover/movie?api_key=f2e5add79221379cbdfc8bd98daf758e&language=en-US&sort_by=popularity.desc&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=1999-12-31&vote_average.gte=6&with_genres=28
+
+console.log("Getting history");
+var movieHistRec = [];
+var movieHistUnRec = [];
+var userId = "1"; //get user id
+$.ajax("/api/history/"+ userId).then(function(data) {
+  console.log("poop");
+  for (let i = 0; i < data.length; i++) {
+    var id = data[i].movieId;
+    if(data[i].recommend === false) {
+      movieApi.getById(id).then(function(data) {
+        movieHistUnRec.push(data);
+        console.log("Unrecommended")
+        console.log(movieHistUnRec);
+      });
+    } else {
+      movieApi.getById(id).then(function(data) {
+          $("#histList").append('<div class="col s2 m4 l4"><div class="card"><div class="card-image waves-effect waves-block waves-light"><img class="activator" src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/' + data.poster_path + '"alt="movie poster"></div><div class="card-content"><span class="card-title activator grey-text text-darken-4">'+ data.title +'<i class="mdi-navigation-more-vert right"></i></span><p><a href="#">This is a link</a></p></div><div class="card-reveal"><span class="card-title grey-text text-darken-4">Suggestions<i class="mdi-navigation-close right"></i></span><p>'+ data.overview +'</p></div></div></div>');
+        //movieHistRec.push(data);
+        //console.log("Recommended");
+        //console.log(movieHistRec);
+      });
+    }
+  }      
+});
+</script>
