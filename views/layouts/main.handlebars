@@ -59,4 +59,26 @@
     })
   </script>
 </body>
+<script>
+//Get the genre id of the button clicked.
+$(document).on('click','.genrebutton', function() {
+  var id = $(this).attr('id');
+  $.ajax({
+    type: 'POST',
+    url: '/api/addpref/' + id
+  }).then(function(response) {
+  })
+});
+
+$('body').live('click', '.suggest-movie', function () {
+  var movieId = parseInt($(this).attr('data-movieID'));
+  $.ajax('/api/similar/' + movieId, {
+    type: 'GET'
+  }).then(function (data) {
+    console.log(data);
+  });
+});
+
+
+</script>
 </html>

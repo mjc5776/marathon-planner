@@ -1,12 +1,12 @@
-const bCrypt = require("bcrypt-nodejs");
-const db = require("../models");
+const bCrypt = require('bcrypt-nodejs');
+const db = require('../models');
 
 // PASSPORT: No need to edit this file unless you want to change from email login to username login
 module.exports = passport => {
-  const LocalStrategy = require("passport-local").Strategy;
+  const LocalStrategy = require('passport-local').Strategy;
 
   passport.serializeUser((user, done) => {
-    console.log("user id =", user.id);
+    console.log('user id =', user.id);
     done(null, user.id);
   });
 
@@ -22,11 +22,11 @@ module.exports = passport => {
   });
 
   passport.use(
-    "local-signup",
+    'local-signup',
     new LocalStrategy(
       {
-        usernameField: "email",
-        passwordField: "password",
+        usernameField: 'email',
+        passwordField: 'password',
         passReqToCallback: true // allows us to pass back the entire request to the callback
       },
 
@@ -42,7 +42,7 @@ module.exports = passport => {
         }).then(user => {
           if (user) {
             return done(null, false, {
-              message: "That email is already taken"
+              message: 'That email is already taken'
             });
           } else {
             const userPassword = generateHash(password);
@@ -69,12 +69,12 @@ module.exports = passport => {
   );
 
   passport.use(
-    "local-signin",
+    'local-signin',
     new LocalStrategy(
       {
         // by default local strategy uses username and password but we'll override it with email instead
-        usernameField: "email",
-        passwordField: "password",
+        usernameField: 'email',
+        passwordField: 'password',
         passReqToCallback: true // allows us to pass back the entire request to the callback
       },
       (req, email, password, done) => {
@@ -91,21 +91,21 @@ module.exports = passport => {
           .then(user => {
             if (!user) {
               return done(null, false, {
-                message: "Email does not exist"
+                message: 'Email does not exist'
               });
             }
             if (!isValidPassword(user.password, password)) {
               return done(null, false, {
-                message: "Incorrect Password."
+                message: 'Incorrect Password.'
               });
             }
             const userinfo = user.get();
             return done(null, userinfo);
           })
           .catch(err => {
-            console.log("Error:", err);
+            console.log('Error:', err);
             return done(null, false, {
-              message: "Something went wrong with your Signin"
+              message: 'Something went wrong with your Signin'
             });
           });
       }
