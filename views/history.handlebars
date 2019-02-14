@@ -11,7 +11,9 @@
             </div>
             <div class="card-content">
                 <span class="card-title activator grey-text text-darken-4 suggest-movie" data-movieId="550">See Other Movies Like This <i class="mdi-navigation-more-vert right"></i></span>
-                <p><a href="#">This is a link</a>
+                <p><a href="#" class="likeIt" data-movieId="550">I like this movie</a>
+                </p>
+                <p><a href="#" class="hateIt" data-movieId="550">I don't like this movie</a>
                 </p>
             </div>
             <div class="card-reveal">
@@ -29,6 +31,42 @@ $('body').on('click', '.suggest-movie', function () {
   }).then(function (data) {
     console.log(data);
   });
+});
+
+$('body').on('click', ".likeIt", function() {
+
+    var movieId = parseInt($(this).attr('data-movieID'));
+    //console.log(movieId);
+
+    $.ajax("/api/users/me", {
+        type: "GET"
+    }).then(function(data) {
+        var user = parseInt(data.id);
+            $.ajax("/api/history/" +user+"/" + movieId + "/1", {
+                type: "POST"
+            }).then(function(data) {
+            console.log("Recommendation made");
+        });
+        //console.log(data);
+    });
+});
+
+$('body').on('click', ".hateIt", function() {
+
+    var movieId = parseInt($(this).attr('data-movieID'));
+    //console.log(movieId);
+
+    $.ajax("/api/users/me", {
+        type: "GET"
+    }).then(function(data) {
+        var user = parseInt(data.id);
+            $.ajax("/api/history/" +user+"/" + movieId + "/0", {
+                type: "POST"
+            }).then(function(data) {
+            console.log("Non-recommendation made");
+        });
+        //console.log(data);
+    });
 });
 
 </script>
