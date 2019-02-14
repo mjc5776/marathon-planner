@@ -1,5 +1,5 @@
-module.exports = function(sequelize, DataTypes) {
-  var MoviePreference = sequelize.define("MoviePreference", {
+module.exports = function (sequelize, DataTypes) {
+  var MoviePreference = sequelize.define('MoviePreference', {
     MovieTitle: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -17,8 +17,8 @@ module.exports = function(sequelize, DataTypes) {
     MovieYear: DataTypes.INTEGER
   });
 
-  //Pass UP id into UserPreference table
-  MoviePreference.associate = function(models) {
+  // Pass UP id into UserPreference table
+  MoviePreference.associate = function (models) {
     MoviePreference.belongsTo(models.UserPreference, {
       foreignKey: {
         allowNull: false

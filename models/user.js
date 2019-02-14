@@ -1,6 +1,6 @@
 // PASSPORT: This is the user model for Passport Authentication.  You can tighten up the validation if needed.
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define("User", {
+  const User = sequelize.define('User', {
     id: {
       autoIncrement: true,
       primaryKey: true,
@@ -32,18 +32,18 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
-   //Pass DOWN id into UserHistory and UserPrecerence table
-   User.associate = function(models) {
+  // Pass DOWN id into UserHistory and UserPrecerence table
+  User.associate = function (models) {
     User.hasOne(models.UserPreference, {
       // as: "userId",
       // foreignKey: "id",
-      onDelete: "cascade"
+      onDelete: 'cascade'
     });
 
     User.hasOne(models.UserHistory, {
       // as: "userId",
       // foreignKey: "id",
-      onDelete: "cascade"
+      onDelete: 'cascade'
     });
   };
   return User;

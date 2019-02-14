@@ -1,5 +1,5 @@
-module.exports = function(sequelize, DataTypes) {
-  var UserHistory = sequelize.define("UserHistory", {
+module.exports = function (sequelize, DataTypes) {
+  var UserHistory = sequelize.define('UserHistory', {
     UserId: DataTypes.INTEGER,
     movieId: DataTypes.INTEGER,
     recommend: {
@@ -8,8 +8,8 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  //Pass UP ID into User table
-  UserHistory.associate = function(models) {
+  // Pass UP ID into User table
+  UserHistory.associate = function (models) {
     UserHistory.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
