@@ -19,56 +19,191 @@
 
             </form>
 
-
         </div>
+    </div>
 
-        <div id="watch" class="container">
+    
 
 
-            <a href="/new" class="btn grey darken-2 waves-effect waves-light">New Movies</a>
-            <a href="/suggest" class="btn grey darken-2 waves-effect waves-light">Suggested Movies</a>
 
-            </a>
 
-        </div>
-        {{#each movielist}}
-        <div class="col s2 m4 l4">
 
-            <div class="card">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{poster_path}}" alt="office">
-                </div>
-                <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4 suggest-movie" data-movieId="{{id}}">See
-                        Other
-                        Movies Like This <i class="mdi-navigation-more-vert right"></i></span>
-                    <p><a href="#" class="likeIt" data-movieId="{{id}}">I like this movie</a>
-                    </p>
-                    <p><a href="#" class="hateIt" data-movieId="{{id}}">I don't like this movie</a>
-                    </p>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Suggestions<i class="mdi-navigation-close right"></i></span>
-                    <p>Here is some more information about movies that you might like.</p>
-                </div>
-            </div>
-        </div>
 
-        {{/each}}
+    <div id="watch" class="container">
 
-        <script>
-            $("#submit").click(function (e) {
-                e.preventDefault();
-                var title = $("#title").val().trim();
-                //console.log(input);
-                $.ajax("/api/movie/:" + title, {
-                    type: "GET"
 
-                    // On success, run the following code
-                }).then(function (response) {
-                    console.log(response);
-                    var movielist = response;
-                    console.log(movielist);
+        <button id="new-movie" class="btn grey darken-2 waves-effect waves-light" type="submit" name="action"
+                    value="submit">New Movies</button>
+        <button id="reco" class="btn grey darken-2 waves-effect waves-light" type="submit" name="action"
+                    value="submit">Suggested Movies</button>
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<br><br>
+
+<div class="row" id="card">
+
+</div>
+
+<script type="text/javascript">
+
+   $("#submit").click(function (e) {
+    $("#card").empty();
+    e.preventDefault();
+    var title = $("#icon-prefix").val().trim();
+    console.log(title);
+    $.ajax("/api/movie/:" + title, {
+        type: "GET"
+
+        // On success, run the following code
+    }).then(function (movie) {
+        console.log(movie);
+        for (let i = 0; i < movie.length; i++) {
+
+
+            var newCard = '<div class="col s2 m4 l4">'
+            newCard += '<div class="card">'
+            newCard += '<div class="card-image waves-effect waves-block waves-light">'
+            newCard += '<img class="activator" src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/' + movie[i].poster_path + '">'
+            newCard += '</div>'
+            newCard += '<div class="card-content">'
+            newCard += '<span class="card-title activator grey-text text-darken-4 suggest-movie" data-movieId="' + movie[i].id + '">'
+            newCard += 'See Other Movies Like This <i class="mdi-navigation-more-vert right"></i></span>'
+            newCard += '<p><a href="#" class="likeIt" data-movieId="' + movie[i].id + '">I like this movie</a></p>'
+            newCard += '<p><a href="#" class="hateIt" data-movieId="' + movie[i].id + '">I do not like this movie</a></p>'
+            newCard += '</div>'
+            newCard += '<div class="card-reveal">'
+            newCard += '<span class="card-title grey-text text-darken-4">Synopsis<i class="mdi-navigation-close right"></i><hr>'
+            newCard += '<p>' + movie[i].overview + '</p></span>'
+            newCard += '</div></div></div>'
+            $("#card").append(newCard);
+        }
+    });
+})
+
+$("#new-movie").click(function () {
+    $("#card").empty();
+
+    $.ajax("/api/nowplaying", {
+        type: "GET"
+
+        // On success, run the following code
+    }).then(function (res) {
+        console.log(res);
+        for (let i = 0; i < res.length; i++) {
+
+
+            var newCard = '<div class="col s2 m4 l4">'
+            newCard += '<div class="card">'
+            newCard += '<div class="card-image waves-effect waves-block waves-light">'
+            newCard += '<img class="activator" src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/' + res[i].poster_path + '">'
+            newCard += '</div>'
+            newCard += '<div class="card-content">'
+            newCard += '<span class="card-title activator grey-text text-darken-4 suggest-movie" data-movieId="' + res[i].id + '">'
+            newCard += 'See Other Movies Like This <i class="mdi-navigation-more-vert right"></i></span>'
+            newCard += '<p><a href="#" class="likeIt" data-movieId="' + res[i].id + '">I like this movie</a></p>'
+            newCard += '<p><a href="#" class="hateIt" data-movieId="' + res[i].id + '">I do not like this movie</a></p>'
+            newCard += '</div>'
+            newCard += '<div class="card-reveal">'
+            newCard += '<span class="card-title grey-text text-darken-4">Synopsis<i class="mdi-navigation-close right"></i><hr>'
+            newCard += '<p>' + res[i].overview + '</p></span>'
+            newCard += '</div></div></div>'
+            $("#card").append(newCard);
+        }
+    });
+})
+
+
+
+$("#reco").click(function () {
+    $("#card").empty();
+    $.ajax("/api/users/me", {
+        type: "GET"
+    }).then(function (user) {
+        $.ajax("/api/similar/"+user.id, {
+            type: "GET"
+        }).then(function (data) {
+            console.log(data);
+            for (let i = 0; i < data.length; i++) {
+
+
+                var newCard = '<div class="col s2 m4 l4">'
+                newCard += '<div class="card">'
+                newCard += '<div class="card-image waves-effect waves-block waves-light">'
+                newCard += '<img class="activator" src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/' + data[i].poster_path + '">'
+                newCard += '</div>'
+                newCard += '<div class="card-content">'
+                newCard += '<span class="card-title activator grey-text text-darken-4 suggest-movie" data-movieId="' + data[i].id + '">'
+                newCard += 'See Other Movies Like This <i class="mdi-navigation-more-vert right"></i></span>'
+                newCard += '<p><a href="#" class="likeIt" data-movieId="' + data[i].id + '">I like this movie</a></p>'
+                newCard += '<p><a href="#" class="hateIt" data-movieId="' + data[i].id + '">I do not like this movie</a></p>'
+                newCard += '</div>'
+                newCard += '<div class="card-reveal">'
+                newCard += '<span class="card-title grey-text text-darken-4">Synopsis<i class="mdi-navigation-close right"></i><hr>'
+                newCard += '<p>' + data[i].overview + '</p></span>'
+                newCard += '</div></div></div>'
+                $("#card").append(newCard);
+            };
+        });
+    });
+});
+
+
+$('body').on('click', '.suggest-movie', function () {
+        var movieId = parseInt($(this).attr('data-movieID'));
+        $.ajax('/api/similar/' + movieId, {
+            type: 'GET'
+        }).then(function (mid) {
+            console.log(mid);
+        });
+    });
+
+    $('body').on('click', ".likeIt", function () {
+
+        var movieId = parseInt($(this).attr('data-movieID'));
+        //console.log(movieId);
+
+        $.ajax("/api/users/me", {
+            type: "GET"
+        }).then(function (like) {
+            if (like) {
+                var user = parseInt(like.id);
+                $.ajax("/api/history/" + user + "/" + movieId + "/1", {
+                    type: "POST"
+                }).then(function (like) {
+                    console.log("Recommendation made");
+                    swal("Success", "Thank you", "success");
                 });
-            })
-        </script>
+            } else {
+                alert("Please sign in to log your history");
+            }
+        });
+    });
+
+    $('body').on('click', ".hateIt", function () {
+
+        var movieId = parseInt($(this).attr('data-movieID'));
+        //console.log(movieId);
+
+        $.ajax("/api/users/me", {
+            type: "GET"
+        }).then(function (hate) {
+            if (hate) {
+                var user = parseInt(hate.id);
+                $.ajax("/api/history/" + user + "/" + movieId + "/0", {
+                    type: "POST"
+                }).then(function (hate) {
+                    console.log("Non-recommendation made");
+                });
+            } else {
+                alert("Please sign in to log your history")
+            }
+        });
+    });
+
+</script>
