@@ -61,6 +61,7 @@ $.ajax("/api/users/me", {
                     type: "POST"
                 }).then(function (data) {
                     console.log("Recommendation made");
+                    swal("Success", "Thank you", "success");
                 });
             } else {
                 alert("Please sign in to log your history");
