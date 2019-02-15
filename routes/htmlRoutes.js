@@ -50,8 +50,7 @@ module.exports = app => {
     });
   });
 
-
-  //route for home page
+  // route for home page
   app.get('/home', (req, res) => {
     db.Example.findAll({}).then(dbExamples => {
       // PASSPORT: checks to see if the user is logged in.  If so then render conditional handlebars via logout render true/false
@@ -68,15 +67,15 @@ module.exports = app => {
     });
   });
 
-  app.get("/movie", (req, res) => {
+  app.get('/movie', (req, res) => {
     db.Example.findAll({}).then(dbExamples => {
       // PASSPORT: checks to see if the user is logged in.  If so then render conditional handlebars via logout render true/false
       let logout = false;
       if (req.user) {
         logout = true;
       }
-      res.render("watch", {
-        
+      res.render('watch', {
+
         // PASSPORT: logout will be true or false if user is logged in
         logout: logout,
         examples: dbExamples
@@ -84,15 +83,15 @@ module.exports = app => {
     });
   });
 
-  app.get("/new", (req, res) => {
+  app.get('/new', (req, res) => {
     db.Example.findAll({}).then(dbExamples => {
       // PASSPORT: checks to see if the user is logged in.  If so then render conditional handlebars via logout render true/false
       let logout = false;
       if (req.user) {
         logout = true;
       }
-      res.render("NEW", {
-        
+      res.render('NEW', {
+
         // PASSPORT: logout will be true or false if user is logged in
         logout: logout,
         examples: dbExamples
@@ -100,15 +99,15 @@ module.exports = app => {
     });
   });
 
-  app.get("/suggest", (req, res) => {
+  app.get('/suggest', (req, res) => {
     db.Example.findAll({}).then(dbExamples => {
       // PASSPORT: checks to see if the user is logged in.  If so then render conditional handlebars via logout render true/false
       let logout = false;
       if (req.user) {
         logout = true;
       }
-      res.render("SUGGEST", {
-        
+      res.render('SUGGEST', {
+
         // PASSPORT: logout will be true or false if user is logged in
         logout: logout,
         examples: dbExamples
