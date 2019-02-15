@@ -1,3 +1,4 @@
+DROP
 USE reelplanner_db;
 
 INSERT INTO users (FirstName, LastName, email, password)
