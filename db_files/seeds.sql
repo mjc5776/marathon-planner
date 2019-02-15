@@ -17,7 +17,7 @@ INSERT INTO users (FirstName, LastName, email, password)
 VALUES ("Steve", "Rogers", "email4@address.com", "test");
 
 INSERT INTO genres(genre, genreId, image)
-Values
+VALUES
 ('Crime', 80, 'images/Crime.jpg'),
 ('Romance', 10749,'images/Romance.jpg' ),
 ('Drama', 18, 'images/Drama.jpg'),
@@ -37,4 +37,12 @@ Values
 ('Music', 10402,'images/Music.jpg'),
 ('Mystery', 9648,'images/Mystery.jpg'),
 ('TV Movie', 10770,'images/TVMovie.jpg')
+
+INSERT INTO userhistories(UserId, movieId, recommend)
+VALUES(6, 24428, 1),
+(6, 87825, 1),
+(6, 11974, 1),
+(6, 1372, 1),
+(6, 106646, 1),
+(6, 550, 1)
 
