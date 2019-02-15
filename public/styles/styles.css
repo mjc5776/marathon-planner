@@ -11,7 +11,24 @@ body {
   min-height: 100vh;
   flex-direction: column;
   
+  
 }
+
+.card-large {
+  width: 700px;
+}
+
+
+h1, h2, h3, h4{
+  font-family: 'Oswald', sans-serif;
+font-family: 'Fjalla One', sans-serif;
+font-family: 'Alfa Slab One', cursive;
+}
+
+.reel-logo{
+
+}
+
 .input-field textarea:focus + label {
   color: white !important;
 }
