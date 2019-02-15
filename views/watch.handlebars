@@ -6,13 +6,13 @@
 <div class="container">
     <div class="row">
         <div class="col-8 offset-2">
-            <form id="search" name="search" method="post" action="search">
+            <form id="search" name="search">
 
                 <div class="input-field">
-                    <input id="icon-prefix" class="text white-text text-darken-2" name="search" type="text" />
+                    <input id="title" class="text white-text text-darken-2" name="search" type="text" />
                     <label for="search">Search</label>
 
-                    <button class="btn grey darken-2 waves-effect waves-light" type="submit" name="action">Submit
+                    <button id ="submit" class="btn grey darken-2 waves-effect waves-light" type="submit" name="action" value="submit">Submit
                     <i class="material-icons right">send</i> </button>
                 </div>
                  
@@ -25,9 +25,49 @@
 
                 
         <a href= "/new" class="btn grey darken-2 waves-effect waves-light">New</a>
-        <a href= "/upcoming" class="btn grey darken-2 waves-effect waves-light">Upcoming</a>
         <a href= "/suggest" class="btn grey darken-2 waves-effect waves-light">Suggest</a>
 
           </a>
                  
     </div>
+    {{#each movielist}}
+    <div class="col s2 m4 l4">
+
+        <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{poster_path}}"
+                    alt="office">
+            </div>
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4 suggest-movie" data-movieId="{{id}}">See Other
+                    Movies Like This <i class="mdi-navigation-more-vert right"></i></span>
+                <p><a href="#" class="likeIt" data-movieId="{{id}}">I like this movie</a>
+                </p>
+                <p><a href="#" class="hateIt" data-movieId="{{id}}">I don't like this movie</a>
+                </p>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">Suggestions<i class="mdi-navigation-close right"></i></span>
+                <p>Here is some more information about movies that you might like.</p>
+            </div>
+        </div>
+    </div>
+
+    {{/each}}
+
+    <script>
+          $("#submit").click(function(e) {
+      e.preventDefault();
+      var title = $("#title").val().trim();
+      //console.log(input);
+      $.ajax("/api/movie/:" + title,{
+          type:"GET"
+     
+     // On success, run the following code
+    }).then(function(response) {
+     console.log(response);
+     var movielist = response;
+     console.log(movielist);
+     });
+    })
+    </script>

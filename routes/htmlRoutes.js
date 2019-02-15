@@ -82,22 +82,6 @@ module.exports = app => {
     });
   });
 
-  app.get("/upcoming", (req, res) => {
-    db.Example.findAll({}).then(dbExamples => {
-      // PASSPORT: checks to see if the user is logged in.  If so then render conditional handlebars via logout render true/false
-      let logout = false;
-      if (req.user) {
-        logout = true;
-      }
-      res.render("UPCOMING", {
-        
-        // PASSPORT: logout will be true or false if user is logged in
-        logout: logout,
-        examples: dbExamples
-      });
-    });
-  });
-
   app.get("/suggest", (req, res) => {
     db.Example.findAll({}).then(dbExamples => {
       // PASSPORT: checks to see if the user is logged in.  If so then render conditional handlebars via logout render true/false
