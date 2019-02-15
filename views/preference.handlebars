@@ -1,16 +1,17 @@
 <div class="container center">
     <h4>Select your favorite movie genres.</h4>
+    <a href="/home" class="waves-effect waves-light btn grey darken-2">Next</a>
+    <div class ="result"></div>
 </div>
 
 <!-- Select a genres -->
-<div class="row card transparent">
-    {{#each genres}} 
-    <div class="col s12 m6 l4">
-    <img src="{{image}}" class="materialbox responsive-img card genrebutton" id={{id}}>
+<div class="container">
+<div class="row card-large">
+    {{#each genres}}
+    <div class="col s12 m6 l4 grid-list grid-list-5">
+        <img src="{{image}}" class="materialbox responsive-img card genrebutton" id={{id}}>
     </div>
     {{/each}}
-    
-    
-
+</div>
 </div>
 

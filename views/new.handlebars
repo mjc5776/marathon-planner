@@ -1,0 +1,50 @@
+<div class="row">
+
+    <h4 class="header center">New Movies</h4>
+
+    <div class="col s2 m4 l4">
+
+         {{#each movielist}}
+    <div class="col s2 m4 l4">
+
+        <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{poster_path}}"
+                    alt="office">
+            </div>
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4 suggest-movie" data-movieId="{{id}}">See Other
+                    Movies Like This <i class="mdi-navigation-more-vert right"></i></span>
+                <p><a href="#" class="likeIt" data-movieId="{{id}}">I like this movie</a>
+                </p>
+                <p><a href="#" class="hateIt" data-movieId="{{id}}">I don't like this movie</a>
+                </p>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">Suggestions<i class="mdi-navigation-close right"></i></span>
+                <p>Here is some more information about movies that you might like.</p>
+            </div>
+        </div>
+    </div>
+
+    {{/each}}
+
+    <script>
+       $(document).ready(function () {
+     $.ajax("/api/nowplaying",{
+          type:"GET"
+     
+     // On success, run the following code
+    }).then(function(response) {
+      var movielist = response;
+     console.log(movielist);
+     });
+    })
+
+    
+    </script>
+
+
+
+
+   

@@ -58,14 +58,16 @@ module.exports = function (app) {
     });
   });
 
-  // Post user preferences
-  app.post('/api/addpref/:id', function (req, res) {
+  //Post user preferences
+  app.post("/api/addpref/:id/:userid", function(req, res) {
+    
     db.UserPreference.create({
-      // UserId: req.user.id,
-      GenreId: req.params.id
-    }).then(function (result) {
-      // res.json(result);
-      console.log('result');
+      GenreId: req.params.id,
+      UserId: req.params.userid
+    }).then(function(result) {
+      //res.json(result);
+      console.log("result");
+      
     });
   });
 
@@ -85,6 +87,23 @@ module.exports = function (app) {
     });
   });
 
+   //Get Movie Preferences
+   app.get("/preference", function(req, res) {
+    db.Genre.findAll({
+      include: [{
+        model: db.UserPreference,
+        required: true //set required: true for a inner JOIN between Genre and UserPref
+      }] 
+    }).then(function(data) {
+      var hbsObject = {
+        genres: data
+      };
+      //res.json(hbsObject);
+      res.render("preference", hbsObject) 
+    });
+  });
+
+    
   // Get genre from preferences
   app.get('/api/preference/:genreId', function (req, res) {
     db.UserPreference.findOne({

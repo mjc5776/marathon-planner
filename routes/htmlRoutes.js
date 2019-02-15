@@ -10,7 +10,7 @@ module.exports = app => {
         logout = true;
       }
       res.render('index', {
-        msg: 'Welcome To Movie Planner!',
+        msg: 'Welcome To Reel Planner!',
         // PASSPORT: logout will be true or false if user is logged in
         logout: logout,
         examples: dbExamples
@@ -43,6 +43,72 @@ module.exports = app => {
       }
       res.render('history', {
 
+        // PASSPORT: logout will be true or false if user is logged in
+        logout: logout,
+        examples: dbExamples
+      });
+    });
+  });
+
+
+  //route for home page
+  app.get('/home', (req, res) => {
+    db.Example.findAll({}).then(dbExamples => {
+      // PASSPORT: checks to see if the user is logged in.  If so then render conditional handlebars via logout render true/false
+      let logout = false;
+      if (req.user) {
+        logout = true;
+      }
+      res.render('home', {
+
+        // PASSPORT: logout will be true or false if user is logged in
+        logout: logout,
+        examples: dbExamples
+      });
+    });
+  });
+
+  app.get("/movie", (req, res) => {
+    db.Example.findAll({}).then(dbExamples => {
+      // PASSPORT: checks to see if the user is logged in.  If so then render conditional handlebars via logout render true/false
+      let logout = false;
+      if (req.user) {
+        logout = true;
+      }
+      res.render("watch", {
+        
+        // PASSPORT: logout will be true or false if user is logged in
+        logout: logout,
+        examples: dbExamples
+      });
+    });
+  });
+
+  app.get("/new", (req, res) => {
+    db.Example.findAll({}).then(dbExamples => {
+      // PASSPORT: checks to see if the user is logged in.  If so then render conditional handlebars via logout render true/false
+      let logout = false;
+      if (req.user) {
+        logout = true;
+      }
+      res.render("NEW", {
+        
+        // PASSPORT: logout will be true or false if user is logged in
+        logout: logout,
+        examples: dbExamples
+      });
+    });
+  });
+
+  app.get("/suggest", (req, res) => {
+    db.Example.findAll({}).then(dbExamples => {
+      // PASSPORT: checks to see if the user is logged in.  If so then render conditional handlebars via logout render true/false
+      let logout = false;
+      if (req.user) {
+        logout = true;
+      }
+      res.render("SUGGEST", {
+        
         // PASSPORT: logout will be true or false if user is logged in
         logout: logout,
         examples: dbExamples
