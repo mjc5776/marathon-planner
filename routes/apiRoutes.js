@@ -85,6 +85,17 @@ module.exports = function (app) {
     });
   });
 
+  // Get genre from preferences
+  app.get('/preference/:genreId', function (req, res) {
+    db.UserPreference.findOne({
+      where: {
+        GenreId: req.params.genreId
+      }
+    }).then(function (genre) {
+      res.json(genre);
+    });
+  });
+
   // Delete an example by id
   app.delete('/api/examples/:id', function (req, res) {
     db.Example.destroy({ where: { id: req.params.id } }).then(dbExample => {
