@@ -4,8 +4,8 @@ module.exports = function(sequelize, DataTypes) {
     
   });
 
-  //Pass UP ID into User table
-  UserPreference.associate = function(models) {
+  // Pass UP ID into User table
+  UserPreference.associate = function (models) {
     UserPreference.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
