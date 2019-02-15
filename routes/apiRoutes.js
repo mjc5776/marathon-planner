@@ -86,13 +86,24 @@ module.exports = function (app) {
   });
 
   // Get genre from preferences
-  app.get('/preference/:genreId', function (req, res) {
+  app.get('/api/preference/:genreId', function (req, res) {
     db.UserPreference.findOne({
       where: {
         GenreId: req.params.genreId
       }
     }).then(function (genre) {
       res.json(genre);
+    });
+  });
+
+  // get genre preferences
+  app.get('/api/userpreference/:userId', function (req, res) {
+    db.UserPreference.findAll({
+      where: {
+        UserId: req.params.userId
+      }
+    }).then(function (response) {
+      res.json(response);
     });
   });
 
