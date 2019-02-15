@@ -16,7 +16,7 @@ module.exports = (app, passport) => {
 
   // Load sign in page for authentication
   app.get('/signin', (req, res) => {
-    res.render('signin')
+    res.render('signin');
   });
 
   // Sends signin to passport the authentication method and redirects based on it's result

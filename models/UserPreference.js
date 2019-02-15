@@ -1,7 +1,7 @@
-module.exports = function(sequelize, DataTypes) {
-  var UserPreference = sequelize.define("UserPreference", {
+module.exports = function (sequelize, DataTypes) {
+  var UserPreference = sequelize.define('UserPreference', {
     UserId: DataTypes.INTEGER
-    
+
   });
 
   // Pass UP ID into User table
