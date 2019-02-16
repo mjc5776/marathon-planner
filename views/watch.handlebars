@@ -51,7 +51,7 @@
 </div>
 
 <script type="text/javascript">
-
+//movie search
    $("#submit").click(function (e) {
     $("#card").empty();
     e.preventDefault();
@@ -85,7 +85,7 @@
         }
     });
 })
-
+//new movies
 $("#new-movie").click(function () {
     $("#card").empty();
 
@@ -119,19 +119,25 @@ $("#new-movie").click(function () {
 })
 
 
-
+//suggested/recomended movies
 $("#reco").click(function () {
     $("#card").empty();
     $.ajax("/api/users/me", {
         type: "GET"
     }).then(function (user) {
-        $.ajax("/api/similar/"+user.id, {
+        $.ajax("/api/userprefmoviedb/"+user.id, {
             type: "GET"
         }).then(function (data) {
+
+            $.ajax("/api/genre/"+data[0].moviegenreId, {
+            type: "GET"
+            }).then(function (arg) {
+
+            var data = arg;
             console.log(data);
             for (let i = 0; i < data.length; i++) {
-
-
+                
+                
                 var newCard = '<div class="col s2 m4 l4">'
                 newCard += '<div class="card">'
                 newCard += '<div class="card-image waves-effect waves-block waves-light">'
@@ -149,11 +155,13 @@ $("#reco").click(function () {
                 newCard += '</div></div></div>'
                 $("#card").append(newCard);
             };
+            
+            });
         });
     });
 });
 
-
+//suggest
 $('body').on('click', '.suggest-movie', function () {
         var movieId = parseInt($(this).attr('data-movieID'));
         $.ajax('/api/similar/' + movieId, {
@@ -162,7 +170,7 @@ $('body').on('click', '.suggest-movie', function () {
             console.log(mid);
         });
     });
-
+//liked movie link
     $('body').on('click', ".likeIt", function () {
 
         var movieId = parseInt($(this).attr('data-movieID'));
@@ -184,7 +192,7 @@ $('body').on('click', '.suggest-movie', function () {
             }
         });
     });
-
+//dislike movie link
     $('body').on('click', ".hateIt", function () {
 
         var movieId = parseInt($(this).attr('data-movieID'));

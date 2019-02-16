@@ -200,6 +200,19 @@ module.exports = function (app) {
     });
   });
 
+  // get movie DB genre preferences
+ app.get('/api/userprefmoviedb/:userId', function (req, res) {
+  db.UserPreference.findAll({
+    attributes:[['genreId', 'moviegenreId']] , //Alias for genreId
+    where: {
+      UserId: req.params.userId
+    },
+    include: db.Genre
+  }).then(function (response) {
+    res.json(response);
+  });
+});
+
 // API key: f2e5add79221379cbdfc8bd98daf758e
 // This finds a movie by title: https://api.themoviedb.org/3/search/movie?api_key=f2e5add79221379cbdfc8bd98daf758e&query=[title]
 // This finds similar movies based on a single film (selected by TMDB id): https://api.themoviedb.org/3/movie/[movie id]550/similar?api_key=f2e5add79221379cbdfc8bd98daf758e&language=en-US&page=1
