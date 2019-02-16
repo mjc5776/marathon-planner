@@ -119,7 +119,7 @@ $("#new-movie").click(function () {
 })
 
 
-//suggested movies
+//suggested/recomended movies
 $("#reco").click(function () {
     $("#card").empty();
     $.ajax("/api/users/me", {
@@ -161,7 +161,7 @@ $("#reco").click(function () {
     });
 });
 
-
+//suggest
 $('body').on('click', '.suggest-movie', function () {
         var movieId = parseInt($(this).attr('data-movieID'));
         $.ajax('/api/similar/' + movieId, {
@@ -170,7 +170,7 @@ $('body').on('click', '.suggest-movie', function () {
             console.log(mid);
         });
     });
-
+//liked movie link
     $('body').on('click', ".likeIt", function () {
 
         var movieId = parseInt($(this).attr('data-movieID'));
@@ -192,7 +192,7 @@ $('body').on('click', '.suggest-movie', function () {
             }
         });
     });
-
+//dislike movie link
     $('body').on('click', ".hateIt", function () {
 
         var movieId = parseInt($(this).attr('data-movieID'));
