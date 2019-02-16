@@ -5,17 +5,18 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <!--Import Google Icon Font-->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+    crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Fjalla+One|Oswald" rel="stylesheet">
   <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
-  <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="../../routes/apiRoutes.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
-  
+
   <title>Home Page</title>
 </head>
 
@@ -23,6 +24,9 @@
   <header>
     {{>navbar}}
   </header>
+
+
+ 
 
 
 
@@ -34,17 +38,17 @@
 
 
   <footer class="page-footer transparent">
-    
-      
-        <div class="footer-copyright">
-          <div class="container">
-            <a href="https://github.com/MichaelSingarayar/marathon-planner"> <i class="fab fa-github left"></i></a>
-            <img class="activator right" src="https://www.themoviedb.org/assets/1/v4/logos/408x161-powered-by-rectangle-green-bb4301c10ddc749b4e79463811a68afebeae66ef43d17bcfd8ff0e60ded7ce99.png">
-          </div>
-        </div>
 
-      
-    
+
+    <div class="footer-copyright">
+      <div class="container">
+        <a href="https://github.com/MichaelSingarayar/marathon-planner"> <i class="fab fa-github left"></i></a>
+        <img class="activator right" src="https://www.themoviedb.org/assets/1/v4/logos/408x161-powered-by-rectangle-green-bb4301c10ddc749b4e79463811a68afebeae66ef43d17bcfd8ff0e60ded7ce99.png">
+      </div>
+    </div>
+
+
+
 
   </footer>
 
@@ -56,29 +60,29 @@
       $('.sidenav').sidenav();
       $('#textarea1').val('New Text');
       M.textareaAutoResize($('#textarea1'));
+
     })
   </script>
 </body>
 <script>
-//Get the genre id of the button clicked.
-$(document).on('click','.genrebutton', function() {
-  var id = $(this).attr('id');
-  $.ajax({
-    type: 'POST',
-    url: '/api/addpref/' + id
-  }).then(function(response) {
+  //Get the genre id of the button clicked.
+  $(document).on('click', '.genrebutton', function () {
+    var buttonId = $(this).attr('id');
+    $(this).hide();
+    //Get user id of logged in user
+    $.get('/api/users/me', function (data) {
+      
+    //Check that the user is signed in
+      if (typeof data === "undefined") {
+        swal("Error", "Please Sign In to add preferences", "error");
+      } else {
+      $.ajax({
+        type: 'POST',
+        url: '/api/addpref/' + buttonId + '/' + data.id
+      }).then(function (response) {})
+      }
+    });
   })
-});
-
-$('body').live('click', '.suggest-movie', function () {
-  var movieId = parseInt($(this).attr('data-movieID'));
-  $.ajax('/api/similar/' + movieId, {
-    type: 'GET'
-  }).then(function (data) {
-    console.log(data);
-  });
-});
-
-
 </script>
+
 </html>

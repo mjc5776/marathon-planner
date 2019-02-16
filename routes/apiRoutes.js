@@ -59,10 +59,10 @@ module.exports = function (app) {
   });
 
   // Post user preferences
-  app.post('/api/addpref/:id', function (req, res) {
+  app.post('/api/addpref/:id/:userid', function (req, res) {
     db.UserPreference.create({
-      // UserId: req.user.id,
-      GenreId: req.params.id
+      GenreId: req.params.id,
+      UserId: req.params.userid
     }).then(function (result) {
       // res.json(result);
       console.log('result');
@@ -82,6 +82,44 @@ module.exports = function (app) {
       };
       // res.json(hbsObject);
       res.render('preference', hbsObject);
+    });
+  });
+
+  // Get Movie Preferences
+  app.get('/preference', function (req, res) {
+    db.Genre.findAll({
+      include: [{
+        model: db.UserPreference,
+        required: true // set required: true for a inner JOIN between Genre and UserPref
+      }]
+    }).then(function (data) {
+      var hbsObject = {
+        genres: data
+      };
+      // res.json(hbsObject);
+      res.render('preference', hbsObject);
+    });
+  });
+
+  // Get genre from preferences
+  app.get('/api/preference/:genreId', function (req, res) {
+    db.UserPreference.findOne({
+      where: {
+        GenreId: req.params.genreId
+      }
+    }).then(function (genre) {
+      res.json(genre);
+    });
+  });
+
+  // get genre preferences
+  app.get('/api/userpreference/:userId', function (req, res) {
+    db.UserPreference.findAll({
+      where: {
+        UserId: req.params.userId
+      }
+    }).then(function (response) {
+      res.json(response);
     });
   });
 
@@ -159,6 +197,19 @@ module.exports = function (app) {
 
     axios.get(URL).then(function (movie) {
       res.json(movie.data);
+    });
+  });
+
+  // get movie DB genre preferences
+  app.get('/api/userprefmoviedb/:userId', function (req, res) {
+    db.UserPreference.findAll({
+      attributes: [['genreId', 'moviegenreId']], // Alias for genreId
+      where: {
+        UserId: req.params.userId
+      },
+      include: db.Genre
+    }).then(function (response) {
+      res.json(response);
     });
   });
 
