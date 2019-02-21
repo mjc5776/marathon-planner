@@ -1,7 +1,7 @@
 module.exports = function (sequelize, DataTypes) {
   var Genre = sequelize.define('Genre', {
     genre: DataTypes.STRING,
-    genreMovId: DataTypes.INTEGER,
+    genreId: DataTypes.INTEGER,
     image: DataTypes.STRING
   });
 
