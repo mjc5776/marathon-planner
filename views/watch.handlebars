@@ -128,7 +128,8 @@ $("#reco").click(function () {
         $.ajax("/api/userprefmoviedb/"+user.id, {
             type: "GET"
         }).then(function (data) {
-            $.ajax("/api/genre/"+data[0].moviegenreId, {
+            console.log(data);
+            $.ajax("/api/genre/"+data[0].Genre.genreId, {
             type: "GET"
             }).then(function (arg) {
 
