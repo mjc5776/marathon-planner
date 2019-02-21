@@ -1,22 +1,7 @@
 DROP
 USE reelplanner_db;
 
-INSERT INTO users (FirstName, LastName, email, password)
-VALUES ("Jarvis", "Vision", "email@address.com", "test");
-
-INSERT INTO users (FirstName, LastName, email, password)
-VALUES ("Bruce", "Banner", "email1@address.com", "test");
-
-INSERT INTO users (FirstName, LastName, email, password)
-VALUES ("Natasha", "Romanoff", "email2@address.com", "test");
-
-INSERT INTO users (FirstName, LastName, email, password)
-VALUES ("Tony", "Stark", "email3@address.com", "test");
-
-INSERT INTO users (FirstName, LastName, email, password)
-VALUES ("Steve", "Rogers", "email4@address.com", "test");
-
-INSERT INTO genres(genre, genreId, image)
+INSERT INTO genres(genre, genreMovId, image)
 Values
 ('Crime', 80, 'images/Crime.jpg'),
 ('Romance', 10749,'images/Romance.jpg' ),
