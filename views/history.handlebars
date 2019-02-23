@@ -2,6 +2,14 @@
 
     <h4 class="header center">Movies History</h4>
 
+    <div class="row" id="histListLike">
+        <h5 class="header center">Liked Movies</h5>
+    </div>
+    <hr>
+    <div class="row" id="histListDislike">
+        <h5 class="header center">Disliked Movies</h5>
+    </div>
+
 </div>
 <script type="text/javascript">
 
@@ -13,6 +21,7 @@ $.ajax("/api/users/me", {
     }).then(function(data) {
         console.log(data);
         for (let i = 0; i < data.length; i++) {
+            if (data[i].recommend === true) {
             $.ajax("/api/movieid/"+data[i].movieId, {
                 type: "GET"
             }).then(function(movie) {
@@ -32,20 +41,43 @@ $.ajax("/api/users/me", {
                 newCard += '<span class="card-title grey-text text-darken-4">Synopsis<i class="mdi-navigation-close right"></i><hr>'
                 newCard += '<p>'+movie.overview+'</p></span>'
                 newCard += '</div></div></div>'
-            $("#histList").append(newCard);
+            $("#histListLike").append(newCard);
             });
+          } else {
+                          $.ajax("/api/movieid/"+data[i].movieId, {
+                type: "GET"
+            }).then(function(movie) {
+                console.log(movie);
+            var newCard = '<div class="col s2 m4 l4">'
+                newCard += '<div class="card">'
+                newCard += '<div class="card-image waves-effect waves-block waves-light">'
+                newCard += '<img class="activator" src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/'+movie.poster_path+'">'
+                newCard += '</div>'
+                newCard += '<div class="card-content">'
+                newCard += '<span class="card-title activator grey-text text-darken-4 suggest-movie" data-movieId="'+movie.id+'">'
+                newCard += 'See Other Movies Like This <i class="mdi-navigation-more-vert right"></i></span>'
+                newCard += '<p><a href="#" class="likeIt" data-movieId="'+movie.id+'">I like this movie</a></p>'
+                newCard += '<p><a href="#" class="hateIt" data-movieId="'+movie.id+'">I do not like this movie</a></p>'
+                newCard += '</div>'
+                newCard += '<div class="card-reveal">'
+                newCard += '<span class="card-title grey-text text-darken-4">Synopsis<i class="mdi-navigation-close right"></i><hr>'
+                newCard += '<p>'+movie.overview+'</p></span>'
+                newCard += '</div></div></div>'
+            $("#histListDislike").append(newCard);
+            });
+          }
         }
     });
 });
 
-    $('body').on('click', '.suggest-movie', function () {
-        var movieId = parseInt($(this).attr('data-movieID'));
-        $.ajax('/api/similar/' + movieId, {
-            type: 'GET'
-        }).then(function (data) {
-            console.log(data);
-        });
-    });
+    //$('body').on('click', '.suggest-movie', function () {
+        //var movieId = parseInt($(this).attr('data-movieID'));
+        //$.ajax('/api/similar/' + movieId, {
+        //    type: 'GET'
+        //}).then(function (data) {
+        //    console.log(data);
+        //});
+    //});
 
     $('body').on('click', ".likeIt", function () {
 
