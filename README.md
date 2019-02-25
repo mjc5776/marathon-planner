@@ -1,7 +1,21 @@
 # Reel Planner
 
+![reelplanner](https://user-images.githubusercontent.com/43361200/53301836-c9f09780-3814-11e9-8976-b364e6dc63fd.png)
+
+
+
+https://peaceful-falls-98746.herokuapp.com/ 
+
+# Contributors 
+* Robert Anderson
+* Mike Corey
+* Simon Hong
+* Michael Singarayar
+
+
+
 ## Description
-* This app utilizes the power of The Movie Database (TMDb) to find movie recommendations taylored to your preferences.
+* This app utilizes the power of The Movie Database (TMDb) to find movie recommendations tailored to your preferences.
 * After you watch a movie you can save it in your personal movie history and mark whether or not you liked it.
 * Get started by making an account and selecting your favorite types of movies
 
