@@ -14,8 +14,9 @@
  * eslint for JS linting
  * Travis CI for clean linted Pull Requests
  * Mocha and Chi for Testing
- * jQuery on Front End
- * Bootstrap 4 on Front End
+ * jQuery
+ * Materialize
+ * SweetAlert
 
  ### Must create database before running server
 
